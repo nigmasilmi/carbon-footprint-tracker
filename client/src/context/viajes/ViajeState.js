@@ -16,7 +16,8 @@ const ViajeState = props => {
     const initialState = {
         viajes: [
             {
-                id: 1,
+                id: '1',
+                usuario: 'Marta Uno',
                 origen: 'Providencia 123',
                 destino: 'Tobalaba 345',
                 medio: 'metro_subway',
@@ -27,7 +28,8 @@ const ViajeState = props => {
                 huella_carbono_total: 1.23
             },
             {
-                id: 2,
+                id: '2',
+                usuario: 'Juan Dos',
                 origen: 'Macul 123',
                 destino: 'Bahia 345',
                 medio: 'bus_transantiago',
@@ -39,7 +41,8 @@ const ViajeState = props => {
 
             },
             {
-                id: 3,
+                id: '3',
+                usuario: 'Javier Tres',
                 origen: 'Santiago de Chile',
                 destino: 'Barcelona España',
                 medio: 'avion_internacional',
@@ -58,13 +61,19 @@ const ViajeState = props => {
 
     // Actions
     // Add Viaje
+    const addViaje = viaje => {
+        // generar un id temporal mientras se acopla el funcionamiento front/back con data hardcoded
+        viaje.id = String(Math.floor(Math.random() * Math.floor(5))) + 'abcdHI' + String(Math.floor(Math.random() * Math.floor(5)));
+        dispatch({ type: ADD_VIAJE, payload: viaje });
+    }
     //Delete Viaje
     //Set Current Viaje
     //Update Viaje
     // Filter related. Not for now
     return (
-        <ViajeContext.Provider value={{ contacts: state.contacts }}>
+        <ViajeContext.Provider value={{ viajes: state.viajes }}>
             {props.children}
         </ViajeContext.Provider>
     )
 }
+export default ViajeState;

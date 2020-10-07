@@ -2,4 +2,4 @@ import { createContext } from 'react';
 
 const ViajeContext = createContext();
 
-expport default ViajeContext
+export default ViajeContext
