@@ -41,7 +41,6 @@ router.post('/', [
         if (!user) {
             res.status(400).json({ msg: 'Email o password incorrectos' });
         }
-        console.log(user);
         // si llega hasta acá es porque el usuario existe, chequeamos entonces su password con bcrypt compare
         const isMatch = await bcrypt.compare(password, user.password);
         // si el password es incorrecto, detenemos la operación enviando el mensaje correspondiente al usuario
