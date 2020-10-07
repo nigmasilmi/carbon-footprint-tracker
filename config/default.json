@@ -1,0 +1,4 @@
+{
+    "mongoURI": "mongodb+srv://carbonfree:Cl34nth3Earth@carbonfootprint.wfee4.mongodb.net/<dbname>?retryWrites=true&w=majority",
+    "jwtSecret": "secret"
+}

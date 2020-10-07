@@ -116,9 +116,8 @@ dist
 # End of https://www.toptal.com/developers/gitignore/api/node
 
 
-# config folder por ahora
+# config folder por ahora // eliminado del .gitignore para permitir pruebas locales y revisión del código backend 
 
-config/
 
 # gitignore for the frontend
 
