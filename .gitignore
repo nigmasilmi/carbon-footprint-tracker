@@ -120,7 +120,7 @@ dist
 
 
 # gitignore for the frontend
-
+node_modules/
 /client/build
 /client/.env.local
 /client/.env.development.local

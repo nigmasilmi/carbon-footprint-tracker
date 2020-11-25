@@ -1,13 +1,21 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import propTypes from 'prop-types';
+import ViajeContext from '../../context/viajes/viajeContext';
 
 
 const ViajeItem = ({ viaje }) => {
+    const viajeContext = useContext(ViajeContext);
+    console.log('Viaje context', viajeContext)
+    const { deleteViaje, setCurrentViaje, clearCurrentViaje } = viajeContext;
 
-    // const { _id, usuario, origen, destino, medio, kms, numero_viajeros, ida_y_vuelta, fecha_viaje, huella_carbono_total } = viaje
     const { id, usuario, origen, destino, medio, kms, numero_viajeros, ida_y_vuelta, fecha_viaje, huella_carbono_total } = viaje
-    console.log(huella_carbono_total);
+    console.log('huella de carbono total:', huella_carbono_total);
     const dOptions = { weekday: 'short', year: 'numeric', month: 'short', day: 'numeric' };
+
+    const onDelete = () => {
+        deleteViaje(id);
+        clearCurrentViaje();
+    };
 
     return (
         <div className="card">
@@ -20,8 +28,16 @@ const ViajeItem = ({ viaje }) => {
                 <li> {ida_y_vuelta ? 'si' : 'no'} es un viaje ida y vuelta</li>
                 <small>identificador del viaje: {id} // </small>
                 <small>Registro hecho por: {usuario}</small>
-                <li><button className="btn btn-dark btn-sm">Editar</button>
-                    <button className="btn btn-danger btn-sm">Eliminar</button></li>
+                <li><button
+                    className="btn btn-dark btn-sm"
+                    onClick={() => setCurrentViaje(viaje)}
+                >Editar</button>
+                    <button
+                        className="btn btn-danger btn-sm"
+                        onClick={onDelete}
+                    >Eliminar
+                    </button>
+                </li>
             </ul>
         </div>
 

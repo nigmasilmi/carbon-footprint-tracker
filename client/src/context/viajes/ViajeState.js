@@ -1,5 +1,5 @@
 import React, { useReducer } from 'react';
-import uuid from 'uuid';
+import { v4 as uuidv4 } from 'uuid';
 import ViajeContext from './viajeContext';
 import viajeReducer from './viajeReducer';
 import {
@@ -54,24 +54,52 @@ const ViajeState = props => {
 
             },
 
-        ]
+        ],
+        current: null
 
     };
     const [state, dispatch] = useReducer(viajeReducer, initialState);
 
-    // Actions
-    // Add Viaje
+    // Action Creators
+    // // Add Viaje
     const addViaje = viaje => {
         // generar un id temporal mientras se acopla el funcionamiento front/back con data hardcoded
-        viaje.id = String(Math.floor(Math.random() * Math.floor(5))) + 'abcdHI' + String(Math.floor(Math.random() * Math.floor(5)));
+        viaje.id = uuidv4();
         dispatch({ type: ADD_VIAJE, payload: viaje });
     }
-    //Delete Viaje
-    //Set Current Viaje
-    //Update Viaje
-    // Filter related. Not for now
+    // // Delete Viaje
+    const deleteViaje = id => {
+        dispatch({ type: DELETE_VIAJE, payload: id });
+    };
+    // // Update viaje
+    const updateViaje = viaje => {
+        dispatch({ type: UPDATE_VIAJE, payload: viaje });
+    };
+    // // Set Current viaje
+    const setCurrentViaje = viaje => {
+        dispatch({ type: SET_CURRENT, payload: viaje });
+    };
+    // // Delete Current viaje
+    const clearCurrentViaje = () => {
+        dispatch({ type: CLEAR_CURRENT });
+    };
+
+    // Set Current Viaje
+
+    ///// TODO //////
+    //
+    // // Update Viaje
+    // // Filter related. Not for now
+    ///// TODO END //////
     return (
-        <ViajeContext.Provider value={{ viajes: state.viajes }}>
+        <ViajeContext.Provider value={
+            {
+                viajes: state.viajes,
+                current: state.current,
+                addViaje, deleteViaje,
+                setCurrentViaje, clearCurrentViaje, updateViaje
+            }
+        }>
             {props.children}
         </ViajeContext.Provider>
     )

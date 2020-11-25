@@ -11,7 +11,7 @@ const App = () => {
   return (
     <ViajeState>
       <Router>
-        <Fragment className="App">
+        <Fragment>
           <Navbar />
           <div className="container">
             <Switch>

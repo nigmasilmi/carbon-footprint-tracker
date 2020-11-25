@@ -3,6 +3,7 @@
 /* Global Styles */
 :root {
   --primary-color: #dc3545;
+  --edit-color: #f0a7ae;
   --dark-color: #333333;
   --light-color: #f4f4f4;
   --danger-color: #dc3545;
@@ -308,6 +309,7 @@ img {
 }
 
 /* Forms */
+
 input {
   margin: 1.2rem 0;
 }
@@ -319,6 +321,7 @@ input {
 }
 
 input[type='text'],
+input[type='number'],
 input[type='email'],
 input[type='password'],
 input[type='date'],
@@ -344,6 +347,10 @@ table td {
 
 table th {
   background: var(--light-color);
+}
+
+.form-edit{
+  background: var(--edit-color);
 }
 
 /* Navbar */
