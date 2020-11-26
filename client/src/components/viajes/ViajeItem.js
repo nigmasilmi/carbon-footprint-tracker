@@ -5,12 +5,9 @@ import ViajeContext from '../../context/viajes/viajeContext';
 
 const ViajeItem = ({ viaje }) => {
     const viajeContext = useContext(ViajeContext);
-    console.log('Viaje context', viajeContext)
     const { deleteViaje, setCurrentViaje, clearCurrentViaje } = viajeContext;
 
     const { id, usuario, origen, destino, medio, kms, numero_viajeros, ida_y_vuelta, fecha_viaje, huella_carbono_total } = viaje
-    console.log('huella de carbono total:', huella_carbono_total);
-    const dOptions = { weekday: 'short', year: 'numeric', month: 'short', day: 'numeric' };
 
     const onDelete = () => {
         deleteViaje(id);
@@ -25,8 +22,8 @@ const ViajeItem = ({ viaje }) => {
             <ul>
                 <li> de {origen} a {destino}</li>
                 <li>viajan {numero_viajeros} personas</li>
-                <li> {ida_y_vuelta ? 'si' : 'no'} es un viaje ida y vuelta</li>
-                <small>identificador del viaje: {id} // </small>
+                <li> {ida_y_vuelta === 'iyv' ? 'si' : 'no'} es un viaje ida y vuelta</li>
+                <small>identificador del viaje: {id} {'// '}</small>
                 <small>Registro hecho por: {usuario}</small>
                 <li><button
                     className="btn btn-dark btn-sm"

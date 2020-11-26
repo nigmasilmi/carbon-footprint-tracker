@@ -1,5 +1,6 @@
 import {
     ADD_VIAJE,
+    VIAJE_ERROR,
     DELETE_VIAJE,
     SET_CURRENT,
     CLEAR_CURRENT,
@@ -12,6 +13,8 @@ export default (state, action) => {
     switch (action.type) {
         case ADD_VIAJE:
             return { ...state, viajes: [...state.viajes, action.payload] }
+        case VIAJE_ERROR:
+            return { ...state, error: action.payload }
         case UPDATE_VIAJE:
             return {
                 ...state,
@@ -32,6 +35,20 @@ export default (state, action) => {
             return {
                 ...state,
                 current: null
+            }
+        case FILTER_VIAJE:
+            return {
+                ...state,
+                filtered: state.viajes.filter(viaje => {
+                    const regex = new RegExp(`${action.payload}`, 'gi')
+                    return viaje.usuario.match(regex) || viaje.origen.match(regex) || viaje.destino.match(regex)
+                })
+
+            }
+        case CLEAR_FILTER:
+            return {
+                ...state,
+                filtered: null
             }
         default:
             return state;

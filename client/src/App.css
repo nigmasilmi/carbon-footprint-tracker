@@ -2,11 +2,11 @@
 
 /* Global Styles */
 :root {
-  --primary-color: #dc3545;
-  --edit-color: #f0a7ae;
-  --dark-color: #333333;
-  --light-color: #f4f4f4;
-  --danger-color: #dc3545;
+  --primary-color: #a5be00;
+  --edit-color: #38369a;
+  --dark-color: #679436;
+  --light-color: #ebf2fa;
+  --danger-color: #e5625e;
   --success-color: #28a745;
 }
 
@@ -310,7 +310,14 @@ img {
 
 /* Forms */
 
-input {
+.form-container {
+  max-width: 300px;
+  margin: auto;
+  overflow: hidden;
+  padding: 0 2rem;
+}
+
+input, select {
   margin: 1.2rem 0;
 }
 
@@ -381,6 +388,22 @@ table th {
 
 .navbar .welcome span {
   margin-right: 0.6rem;
+}
+
+/* Animations*/
+.item-enter{
+  opacity: 0;
+}
+.item-enter-active{
+  opacity: 1;
+  transition: opacity 500ms ease-in;
+}
+.item-exit{
+  opacity:1;
+}
+.item-exit-active{
+  opacity: 0;
+  transition: opacity 500ms ease-in;
 }
 
 /* Mobile Styles */

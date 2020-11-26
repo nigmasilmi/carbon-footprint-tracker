@@ -39,13 +39,13 @@ router.post('/', [
         let user = await User.findOne({ email });
         // si no existe el usuario con ese email indicar que las credenciales son incorrectas, sin decir cuál 
         if (!user) {
-            res.status(400).json({ msg: 'Email o password incorrectos' });
+            res.status(400).json({ msg: 'Email o password incorrecto' });
         }
         // si llega hasta acá es porque el usuario existe, chequeamos entonces su password con bcrypt compare
         const isMatch = await bcrypt.compare(password, user.password);
         // si el password es incorrecto, detenemos la operación enviando el mensaje correspondiente al usuario
         if (!isMatch) {
-            return res.status(400).json({ msg: 'Email o password incorrecto, por favor intente nuevamente' });
+            return res.status(400).json({ msg: 'Email o password incorrecto' });
         }
         //si llega hasta acá es que el password es correcto, entonces generamos el token y lo enviamos al cliente
         const payload = {

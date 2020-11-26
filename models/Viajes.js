@@ -13,7 +13,6 @@ const ViajeSchema = mongoose.Schema({
     destino: {
         type: String,
         required: true,
-        unique: true
     },
     medio: {
         type: mongoose.Schema.Types.ObjectId,
@@ -29,7 +28,8 @@ const ViajeSchema = mongoose.Schema({
         type: Number
     },
     ida_y_vuelta: {
-        type: Boolean
+        type: String,
+        required: true
     },
     fecha_viaje: {
         type: Date,
