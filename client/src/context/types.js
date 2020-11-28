@@ -1,3 +1,5 @@
+export const GET_VIAJES = 'GET_VIAJES';
+export const CLEAR_VIAJES = 'CLEAR_VIAJES';
 export const ADD_VIAJE = 'ADD_VIAJE';
 export const VIAJE_ERROR = 'VIAJE_ERROR';
 export const DELETE_VIAJE = 'DELETE_VIAJE';

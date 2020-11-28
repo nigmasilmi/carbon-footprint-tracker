@@ -23,7 +23,7 @@ const ViajesFilter = () => {
         <form>
             <input
                 ref={text} type="text"
-                placeholder="Filtrar viajes por usuario, origien o destino"
+                placeholder="Filtrar viajes por usuario, origen o destino"
                 onChange={onChange}
             />
         </form>

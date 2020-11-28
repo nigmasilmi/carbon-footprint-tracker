@@ -6,6 +6,9 @@ const ViajeSchema = mongoose.Schema({
         ref: 'users',
         required: true
     },
+    usuario_name: {
+        type: String
+    },
     origen: {
         type: String,
         required: true
@@ -15,9 +18,11 @@ const ViajeSchema = mongoose.Schema({
         required: true,
     },
     medio: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'medios',
+        type: String,
         required: true,
+    },
+    medio_name: {
+        type: String
     },
     kms: {
         type: Number,
@@ -34,10 +39,6 @@ const ViajeSchema = mongoose.Schema({
     fecha_viaje: {
         type: Date,
         required: true
-    },
-    factor_conversion: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'medios'
     },
     huella_carbono_total: {
         type: Number,

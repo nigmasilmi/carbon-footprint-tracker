@@ -13,7 +13,7 @@ const ViajeForm = () => {
             setViaje({
                 origen: '',
                 destino: '',
-                medio: '',
+                medio_name: 'metro_subway',
                 kms: 0,
                 numero_viajeros: 0,
                 ida_y_vuelta: 'iyv',
@@ -25,19 +25,17 @@ const ViajeForm = () => {
     const [viaje, setViaje] = useState({
         origen: '',
         destino: '',
-        medio: '',
+        medio_name: 'metro_subway',
         kms: 0,
         numero_viajeros: 0,
         ida_y_vuelta: 'iyv',
         fecha_viaje: '',
     });
 
-    // No olvidar adaptar al acoplar BBDD const { _id, usuario, origen, destino, medio, kms, numero_viajeros, ida_y_vuelta, fecha_viaje, huella_carbono_total } = viaje
-
-    const { origen, destino, medio, kms, numero_viajeros, fecha_viaje } = viaje
+    const { origen, destino, medio_name, kms, numero_viajeros, fecha_viaje } = viaje
 
     const onChange = e => {
-        console.log('cambiando', e.target.name, 'por', e.target.value)
+        console.log('cambiando', e.target.name, 'por', e.target.value);
         setViaje({ ...viaje, [e.target.name]: e.target.value });
     };
 
@@ -48,7 +46,6 @@ const ViajeForm = () => {
     const onSubmit = e => {
         e.preventDefault();
         if (current === null) {
-            console.log(viaje);
             addViaje(viaje);
             clearAll();
         } else {
@@ -68,7 +65,7 @@ const ViajeForm = () => {
                 <input type="text" placeholder="origen" name="origen" value={origen} onChange={onChange} />
                 <input type="text" placeholder="destino" name="destino" value={destino} onChange={onChange} />
                 <label>Medio de transporte</label>
-                <select name="medio" value={medio} onChange={onChange}>
+                <select name="medio_name" value={medio_name} onChange={onChange}>
                     <option value="metro_subway">Metro</option>
                     <option value="auto_gasolina">Auto</option>
                     <option value="camioneta_diesel">Camioneta</option>
@@ -85,7 +82,7 @@ const ViajeForm = () => {
                 <input type="number" name="numero_viajeros" value={numero_viajeros} onChange={onChange} />
                 <input type="radio" name="ida_y_vuelta" value="iyv" onChange={onChange} /> Ida y Vuelta {' '}
                 <input type="radio" name="ida_y_vuelta" value="ida" onChange={onChange} /> Sólo Ida {' '}
-                <input type="date" placeholder="fecha del viaje" name="fecha_viaje" value={fecha_viaje} onChange={onChange} />
+                <input type="text" placeholder="fecha del viaje mm-dd-yyyy" name="fecha_viaje" value={fecha_viaje} onChange={onChange} />
                 <div>
                     <input type="submit" value={current !== null ? 'Guardar cambios' : 'Registrar viaje'} className="btn btn-primary btn-block"></input>
                 </div>

@@ -1,4 +1,6 @@
 import {
+    GET_VIAJES,
+    CLEAR_VIAJES,
     ADD_VIAJE,
     VIAJE_ERROR,
     DELETE_VIAJE,
@@ -11,25 +13,37 @@ import {
 
 export default (state, action) => {
     switch (action.type) {
+        case GET_VIAJES:
+            return { ...state, viajes: action.payload, loading: false }
+        case CLEAR_VIAJES:
+            return {
+                ...state,
+                viajes: null,
+                filtered: null,
+                current: null,
+                error: null,
+                loading: false
+            }
         case ADD_VIAJE:
-            return { ...state, viajes: [...state.viajes, action.payload] }
-        case VIAJE_ERROR:
-            return { ...state, error: action.payload }
+            return { ...state, viajes: [action.payload, ...state.viajes], loading: false }
         case UPDATE_VIAJE:
             return {
                 ...state,
-                viajes: state.viajes.map(viaje => viaje.id === action.payload.id ? action.payload : viaje)
+                viajes: state.viajes.map(viaje => viaje._id === action.payload._id ? action.payload : viaje),
+                loading: false
             }
-
         case DELETE_VIAJE:
             return {
                 ...state,
-                viajes: state.viajes.filter(viaje => viaje.id !== action.payload)
+                viajes: state.viajes.filter(viaje => viaje._id !== action.payload),
+                loading: false
             }
+        case VIAJE_ERROR:
+            return { ...state, error: action.payload }
         case SET_CURRENT:
             return {
                 ...state,
-                current: action.payload
+                current: { ...action.payload.viaje, fecha_viaje: action.payload.humanFecha }
             }
         case CLEAR_CURRENT:
             return {
