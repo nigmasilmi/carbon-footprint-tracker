@@ -32,7 +32,7 @@ router.get('/', auth, async (req, res) => {
 router.post('/', [auth, [
     check('origen', 'Es necesario que indique la dirección de origen').not().isEmpty(),
     check('destino', 'Es necesario que indique la dirección de destino').not().isEmpty(),
-    check('medio', 'Es necesario que seleccione el medio de transporte a utilizar').not().isEmpty(),
+    // check('medio', 'Es necesario que seleccione el medio de transporte a utilizar').not().isEmpty(),
     check('kms', 'Por favor ingrese la cantidad de kilómetros que recorrerá').not().isEmpty(),
     check('numero_viajeros', 'Por favor indique cuántas personas en total hacen el viaje').not().isEmpty().isInt(),
     check('ida_y_vuelta', 'Por favor indique si su viaje es de ida y regreso'),
