@@ -17,10 +17,6 @@ const ViajeSchema = mongoose.Schema({
         type: String,
         required: true,
     },
-    medio: {
-        type: String,
-        required: true,
-    },
     medio_name: {
         type: String
     },
