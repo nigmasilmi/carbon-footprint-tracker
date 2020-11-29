@@ -35,7 +35,6 @@ const ViajeForm = () => {
     const { origen, destino, medio_name, kms, numero_viajeros, fecha_viaje } = viaje
 
     const onChange = e => {
-        console.log('cambiando', e.target.name, 'por', e.target.value);
         setViaje({ ...viaje, [e.target.name]: e.target.value });
     };
 

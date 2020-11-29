@@ -42,7 +42,6 @@ router.post('/', [auth, [
     if (!errors.isEmpty()) {
         return res.status(400).json({ errors: errors.array() });
     }
-    console.log('lo que viene en el request de nuevo viaje', req.body)
     const userId = req.user.id;
     const { origen, destino, medio_name, kms, numero_viajeros, ida_y_vuelta, fecha_viaje } = req.body;
     try {
@@ -77,7 +76,6 @@ router.put('/:id', auth, async (req, res) => {
         return res.status(400).json({ errors: errors.array() });
     }
     const userId = req.user.id;
-    console.log('lo que viene en el req body de editar', req.body);
     const { origen, destino, medio, medio_name, kms, numero_viajeros, ida_y_vuelta, fecha_viaje } = req.body;
     //obtenemos el nombre de usuario desde su id
     const userObj = await User.find({ _id: userId });
