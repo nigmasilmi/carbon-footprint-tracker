@@ -51,14 +51,14 @@ router.post('/', [auth, [
         const userName = userObj[0].name;
         // encontramos el valor de conversión según el medio en el request
         const elMedioConTodo = await Medio.find({ nombre: medio_name });
-        const { nombre, factor_de_conversion } = elMedioConTodo[0];
+        const { _id, nombre, factor_de_conversion } = elMedioConTodo[0];
         const medioNameFetched = nombre;
 
         // considerando si es ida y vuelta o no
         const goAndBack = (ida_y_vuelta === 'iyv' ? 2 : 1);
         const calcHuellaCarbono = (kms * numero_viajeros * goAndBack * factor_de_conversion).toFixed(2);
         // integramos el cálculo al nuevo documento y guardamos en la colección
-        const newViaje = new Viaje({ usuario: userId, usuario_name: userName, origen, destino, medio_name: medioNameFetched, kms, numero_viajeros, ida_y_vuelta, fecha_viaje, huella_carbono_total: calcHuellaCarbono });
+        const newViaje = new Viaje({ usuario: userId, usuario_name: userName, origen, destino, medio: _id, medio_name: medioNameFetched, kms, numero_viajeros, ida_y_vuelta, fecha_viaje, huella_carbono_total: calcHuellaCarbono });
         const viaje = await newViaje.save();
         res.json(viaje);
     } catch (error) {
