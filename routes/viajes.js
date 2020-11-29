@@ -78,13 +78,13 @@ router.put('/:id', auth, async (req, res) => {
     }
     const userId = req.user.id;
     console.log('lo que viene en el req body de editar', req.body);
-    const { origen, destino, medio_name, kms, numero_viajeros, ida_y_vuelta, fecha_viaje } = req.body;
+    const { origen, destino, medio, medio_name, kms, numero_viajeros, ida_y_vuelta, fecha_viaje } = req.body;
     //obtenemos el nombre de usuario desde su id
     const userObj = await User.find({ _id: userId });
     const usuario_name = userObj[0].name;
     // encontramos el valor de conversión según el medio en el request
     const elMedioConTodo = await Medio.find({ nombre: medio_name });
-    const { nombre, factor_de_conversion } = elMedioConTodo[0];
+    const { _id, nombre, factor_de_conversion } = elMedioConTodo[0];
     const medioNameFetched = nombre;
     // considerando si es ida y vuelta o no
     const goAndBack = (ida_y_vuelta === 'iyv' ? 2 : 1);
@@ -96,6 +96,7 @@ router.put('/:id', auth, async (req, res) => {
     if (origen) viajeFields.origen = origen;
     if (destino) viajeFields.destino = destino;
     if (usuario_name) viajeFields.usuario_name = usuario_name;
+    if (medio) viajeFields.medio = _id;
     if (medio_name) viajeFields.medio_name = medioNameFetched;
     if (kms) viajeFields.kms = kms;
     if (numero_viajeros) viajeFields.numero_viajeros = numero_viajeros;
